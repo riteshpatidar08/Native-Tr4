@@ -50,9 +50,16 @@
 //   },
 // });
 
-import { FlatList, ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import {
+  FlatList,
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+} from 'react-native';
 import React from 'react';
-import { SafeAreaView , SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 const App = () => {
@@ -74,16 +81,17 @@ const App = () => {
   }, []);
   console.log(data);
 
-  if(loading){
-    return <View>
-      <ActivityIndicator size="small" color="#0000ff" />
-    </View>
+  if (loading) {
+    return (
+      <View>
+        <ActivityIndicator size="small" color="#0000ff" />
+      </View>
+    );
   }
   return (
-
     <SafeAreaProvider>
       <SafeAreaView>
-      <View>
+        {/* <View style={{marginVertical : 20}}>
       <Text>App</Text>
       <FlatList
         data={data}
@@ -94,21 +102,34 @@ const App = () => {
           </View>
         )}
       />
-    </View>
+    </View> */}
+        <View>
+          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            placeholder="useless placeholder"
+            keyboardType="numeric"
+          />
+        </View>
       </SafeAreaView>
     </SafeAreaProvider>
-  
   );
 };
 
 export default App;
 
 const styles = StyleSheet.create({
-  bold : {
-    marginVertical : 4 ,
-    fontSize : 20 ,
-    fontWeight : 700,
-    border : 1 ,
-    borderColor : '#ff3'
-  }
+  bold: {
+    marginVertical: 4,
+    fontSize: 20,
+    fontWeight: 700,
+    border: 1,
+    borderColor: '#ff3',
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  },
 });
