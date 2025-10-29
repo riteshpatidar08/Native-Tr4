@@ -57,6 +57,8 @@ import {
   Text,
   View,
   TextInput,
+  Button,
+  Alert
 } from 'react-native';
 import React from 'react';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
@@ -65,6 +67,8 @@ import axios from 'axios';
 const App = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [email , setEmail] = useState("") ;
+  const [password , setPassword] = useState("");
   useEffect(() => {
     setLoading(true);
     axios
@@ -88,6 +92,9 @@ const App = () => {
       </View>
     );
   }
+  const handleFormSubmit = () => {
+    Alert.alert(email ,password)
+  }
   return (
     <SafeAreaProvider>
       <SafeAreaView>
@@ -104,12 +111,20 @@ const App = () => {
       />
     </View> */}
         <View>
-          <TextInput style={styles.input} />
+          <TextInput style={styles.input} placeholder='Enter email' 
+          keyboardType='email-address'
+          onChangeText={setEmail}
+          value={email}
+          returnKeyType='next' />
           <TextInput
             style={styles.input}
-            placeholder="useless placeholder"
-            keyboardType="numeric"
+            placeholder="Enter Password"
+           secureTextEntry
+           onChangeText={setPassword}
+           value={password}
+           returnKeyType='done'
           />
+          <Button  title="SUBMIT" onPress={handleFormSubmit}/>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
