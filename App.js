@@ -50,7 +50,7 @@
 //   },
 // });
 
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { SafeAreaView , SafeAreaProvider } from 'react-native-safe-area-context';
 import { useState, useEffect } from 'react';
@@ -73,6 +73,12 @@ const App = () => {
       });
   }, []);
   console.log(data);
+
+  if(loading){
+    return <View>
+      <ActivityIndicator size="small" color="#0000ff" />
+    </View>
+  }
   return (
 
     <SafeAreaProvider>
