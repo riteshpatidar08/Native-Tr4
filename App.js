@@ -52,6 +52,7 @@
 
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import { SafeAreaView , SafeAreaProvider } from 'react-native-safe-area-context';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 const App = () => {
@@ -73,21 +74,35 @@ const App = () => {
   }, []);
   console.log(data);
   return (
-    <View>
+
+    <SafeAreaProvider>
+      <SafeAreaView>
+      <View>
       <Text>App</Text>
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View>
-            <Text>{item.title}</Text>
+            <Text style={styles.bold}>{item.title}</Text>
           </View>
         )}
       />
     </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
+  
   );
 };
 
 export default App;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  bold : {
+    marginVertical : 4 ,
+    fontSize : 20 ,
+    fontWeight : 700,
+    border : 1 ,
+    borderColor : '#ff3'
+  }
+});
